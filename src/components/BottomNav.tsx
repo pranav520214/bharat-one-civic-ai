@@ -15,7 +15,10 @@ export const BottomNav: React.FC = () => {
   ];
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t-4 border-black pb-safe-bottom">
+    <nav 
+      aria-label="Main App Navigation" 
+      className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t-4 border-black pb-safe-bottom"
+    >
       <div className="max-w-md mx-auto px-4 h-16 flex items-center justify-between">
         {tabs.map((tab) => {
           const Icon = tab.icon;
@@ -28,6 +31,8 @@ export const BottomNav: React.FC = () => {
                 onClick={() => setActiveTab(tab.id)}
                 className="relative -top-4 flex flex-col items-center justify-center select-none"
                 id={`nav-btn-${tab.id}`}
+                aria-label={tab.label}
+                aria-current={isActive ? 'page' : undefined}
               >
                 {/* Neon Neo-Brutalist Outer Floating Circle */}
                 <motion.div
@@ -35,7 +40,7 @@ export const BottomNav: React.FC = () => {
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                 >
-                  <Bot className="w-6 h-6 text-white" />
+                  <Bot className="w-6 h-6 text-white" aria-hidden="true" />
                 </motion.div>
                 <span className="text-[9px] font-black uppercase tracking-tight text-black mt-1">
                   {tab.label}
@@ -57,6 +62,8 @@ export const BottomNav: React.FC = () => {
               onClick={() => setActiveTab(tab.id)}
               className="relative flex flex-col items-center justify-center flex-1 h-full text-black hover:text-black transition-colors"
               id={`nav-btn-${tab.id}`}
+              aria-label={tab.label}
+              aria-current={isActive ? 'page' : undefined}
             >
               <div className="relative py-1.5 px-3 flex items-center justify-center select-none">
                 {isActive && (
@@ -66,7 +73,7 @@ export const BottomNav: React.FC = () => {
                     transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                   />
                 )}
-                <Icon className={`w-4.5 h-4.5 transition-transform ${isActive ? 'text-black scale-110' : 'text-gray-500'}`} />
+                <Icon className={`w-4.5 h-4.5 transition-transform ${isActive ? 'text-black scale-110' : 'text-gray-500'}`} aria-hidden="true" />
               </div>
               <span className={`text-[9px] font-black uppercase tracking-tighter mt-1 ${isActive ? 'text-black' : 'text-gray-500'}`}>
                 {tab.label}
@@ -75,6 +82,6 @@ export const BottomNav: React.FC = () => {
           );
         })}
       </div>
-    </div>
+    </nav>
   );
 };

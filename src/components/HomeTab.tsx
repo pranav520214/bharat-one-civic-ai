@@ -119,9 +119,10 @@ export const HomeTab: React.FC = () => {
 
         <div>
           {user ? (
-            <div 
+            <button 
               onClick={() => setActiveTab('profile')}
-              className="flex items-center gap-2 cursor-pointer bg-white px-3 py-1.5 rounded-xl border-2 border-black hover:bg-gray-50 transition-all shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
+              className="flex items-center gap-2 bg-white px-3 py-1.5 rounded-xl border-2 border-black hover:bg-gray-50 transition-all shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] text-left focus:outline-none focus:ring-2 focus:ring-blue-500"
+              aria-label="View citizen profile"
             >
               <div className="w-8 h-8 rounded-full bg-black border border-black flex items-center justify-center text-white text-xs font-black">
                 {user.fullName.charAt(0)}
@@ -130,7 +131,7 @@ export const HomeTab: React.FC = () => {
                 <div className="text-[8px] font-extrabold text-gray-500 uppercase leading-none">Citizen</div>
                 <div className="text-xs font-black text-black leading-tight">{user.fullName.split(' ')[0]}</div>
               </div>
-            </div>
+            </button>
           ) : (
             <button 
               onClick={quickLogin}
@@ -185,18 +186,19 @@ export const HomeTab: React.FC = () => {
             </div>
 
             {/* Trending Local Scheme */}
-            <div 
+            <button 
               onClick={() => setActiveTab('services')}
-              className="bg-[#FEEFC3] text-black border-2 border-black p-3 rounded-2xl shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:bg-[#fde7a6] transition-all cursor-pointer flex flex-col justify-center text-left"
+              className="bg-[#FEEFC3] text-black border-2 border-black p-3 rounded-2xl shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:bg-[#fde7a6] transition-all flex flex-col justify-center text-left focus:outline-none focus:ring-2 focus:ring-amber-500"
+              aria-label={`Trending Scheme: ${stateTheme.trendingScheme}`}
             >
               <div className="text-[8px] font-black text-gray-500 uppercase flex items-center gap-1 leading-none">
-                <TrendingUp className="w-3 h-3 text-[#34A853]" />
+                <TrendingUp className="w-3 h-3 text-[#34A853]" aria-hidden="true" />
                 <span>Trending Scheme</span>
               </div>
               <div className="text-xs font-black tracking-tight truncate mt-1 text-black underline">
                 {stateTheme.trendingScheme}
               </div>
-            </div>
+            </button>
           </div>
         </div>
       </div>
@@ -265,57 +267,65 @@ export const HomeTab: React.FC = () => {
         </h3>
         
         <div className="grid grid-cols-2 gap-3">
-          <div 
+          <button 
+            type="button"
             onClick={() => setActiveTab('chat')}
-            className="bg-[#D2E3FC] p-4 rounded-2xl border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] transition-all cursor-pointer text-left space-y-2.5 active:translate-x-[2px] active:translate-y-[2px] active:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
+            className="bg-[#D2E3FC] p-4 rounded-2xl border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] transition-all text-left space-y-2.5 active:translate-x-[2px] active:translate-y-[2px] active:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
+            aria-label="Ask Saarthi AI"
           >
             <div className="w-9 h-9 rounded-xl bg-white border-2 border-black flex items-center justify-center text-black shadow-[1.5px_1.5px_0px_0px_rgba(0,0,0,1)]">
-              <Bot className="w-5 h-5" />
+              <Bot className="w-5 h-5" aria-hidden="true" />
             </div>
             <div>
               <h4 className="font-black text-xs text-black uppercase tracking-tight">Ask Saarthi AI</h4>
               <p className="text-[10px] text-gray-800 font-bold mt-0.5 leading-tight">Verify eligibility, check templates</p>
             </div>
-          </div>
+          </button>
 
-          <div 
+          <button 
+            type="button"
             onClick={() => { setActiveTab('services') }}
-            className="bg-[#FEEFC3] p-4 rounded-2xl border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] transition-all cursor-pointer text-left space-y-2.5 active:translate-x-[2px] active:translate-y-[2px] active:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
+            className="bg-[#FEEFC3] p-4 rounded-2xl border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] transition-all text-left space-y-2.5 active:translate-x-[2px] active:translate-y-[2px] active:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] focus:outline-none focus:ring-2 focus:ring-amber-500 w-full"
+            aria-label="Government Schemes"
           >
             <div className="w-9 h-9 rounded-xl bg-white border-2 border-black flex items-center justify-center text-black shadow-[1.5px_1.5px_0px_0px_rgba(0,0,0,1)]">
-              <Award className="w-5 h-5" />
+              <Award className="w-5 h-5" aria-hidden="true" />
             </div>
             <div>
               <h4 className="font-black text-xs text-black uppercase tracking-tight">Govt Schemes</h4>
               <p className="text-[10px] text-gray-800 font-bold mt-0.5 leading-tight">Browse welfare programs & apply</p>
             </div>
-          </div>
+          </button>
 
-          <div 
+          <button 
+            type="button"
             onClick={() => setActiveTab('track')}
-            className="bg-[#FAD2CF] p-4 rounded-2xl border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] transition-all cursor-pointer text-left space-y-2.5 active:translate-x-[2px] active:translate-y-[2px] active:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
+            className="bg-[#FAD2CF] p-4 rounded-2xl border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] transition-all text-left space-y-2.5 active:translate-x-[2px] active:translate-y-[2px] active:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] focus:outline-none focus:ring-2 focus:ring-red-500 w-full"
+            aria-label="Report Issue"
           >
             <div className="w-9 h-9 rounded-xl bg-white border-2 border-black flex items-center justify-center text-black shadow-[1.5px_1.5px_0px_0px_rgba(0,0,0,1)]">
-              <AlertTriangle className="w-5 h-5" />
+              <AlertTriangle className="w-5 h-5" aria-hidden="true" />
             </div>
             <div>
               <h4 className="font-black text-xs text-black uppercase tracking-tight">Report Issue</h4>
               <p className="text-[10px] text-gray-800 font-bold mt-0.5 leading-tight">Log potholes & municipal complaints</p>
             </div>
-          </div>
+          </button>
 
-          <div 
+          <button 
+            type="button"
             onClick={() => setActiveTab('profile')}
-            className="bg-[#CEEAD6] p-4 rounded-2xl border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] transition-all cursor-pointer text-left space-y-2.5 active:translate-x-[2px] active:translate-y-[2px] active:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
+            className="bg-[#CEEAD6] p-4 rounded-2xl border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] transition-all text-left space-y-2.5 active:translate-x-[2px] active:translate-y-[2px] active:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] focus:outline-none focus:ring-2 focus:ring-green-500 w-full"
+            aria-label="e-Locker Wallet"
           >
             <div className="w-9 h-9 rounded-xl bg-white border-2 border-black flex items-center justify-center text-black shadow-[1.5px_1.5px_0px_0px_rgba(0,0,0,1)]">
-              <ShieldAlert className="w-5 h-5" />
+              <ShieldAlert className="w-5 h-5" aria-hidden="true" />
             </div>
             <div>
               <h4 className="font-black text-xs text-black uppercase tracking-tight">e-Locker Wallet</h4>
               <p className="text-[10px] text-gray-800 font-bold mt-0.5 leading-tight">Encrypt Aadhaar, PAN & licenses</p>
             </div>
-          </div>
+          </button>
         </div>
       </div>
 

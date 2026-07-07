@@ -515,6 +515,15 @@ export const TrackTab: React.FC = () => {
               onDragLeave={handleDragLeave}
               onDrop={handleDrop}
               onClick={() => fileInputRef.current?.click()}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  fileInputRef.current?.click();
+                }
+              }}
+              role="button"
+              tabIndex={0}
+              aria-label="Upload photo of civic issue"
               className={`border-2 border-dashed rounded-2xl p-6 flex flex-col items-center justify-center gap-2 cursor-pointer transition-all ${isDragOver ? 'bg-[#E8F0FE] border-[#4285F4]' : 'bg-gray-50 border-gray-300 hover:border-black'}`}
             >
               <input 
@@ -523,6 +532,7 @@ export const TrackTab: React.FC = () => {
                 onChange={handleImageFileChange} 
                 className="hidden" 
                 accept="image/*" 
+                aria-hidden="true"
               />
               {aiImageBase64 ? (
                 <div className="relative w-full aspect-video rounded-xl overflow-hidden border-2 border-black shadow-[1.5px_1.5px_0px_0px_rgba(0,0,0,1)]">
@@ -596,8 +606,9 @@ export const TrackTab: React.FC = () => {
 
                   <div className="grid grid-cols-2 gap-3">
                     <div>
-                      <label className="text-[9px] font-black uppercase text-black block mb-1">AI Detected Category</label>
+                      <label htmlFor="ai-detected-cat" className="text-[9px] font-black uppercase text-black block mb-1">AI Detected Category</label>
                       <select 
+                        id="ai-detected-cat"
                         value={aiCategory} 
                         onChange={(e: any) => setAiCategory(e.target.value)}
                         className="w-full bg-white border-2 border-black rounded-xl px-2.5 py-1.5 text-xs font-black text-black focus:outline-none focus:bg-[#E8F0FE]"
@@ -620,8 +631,9 @@ export const TrackTab: React.FC = () => {
                   </div>
 
                   <div>
-                    <label className="text-[9px] font-black uppercase text-black block mb-1">Automatic Assigned Department</label>
+                    <label htmlFor="ai-assigned-dept" className="text-[9px] font-black uppercase text-black block mb-1">Automatic Assigned Department</label>
                     <input 
+                      id="ai-assigned-dept"
                       type="text" 
                       value={aiDepartment} 
                       onChange={(e) => setAiDepartment(e.target.value)}
@@ -630,8 +642,9 @@ export const TrackTab: React.FC = () => {
                   </div>
 
                   <div>
-                    <label className="text-[9px] font-black uppercase text-black block mb-1">Verify Street Location Name</label>
+                    <label htmlFor="ai-street-loc" className="text-[9px] font-black uppercase text-black block mb-1">Verify Street Location Name</label>
                     <input 
+                      id="ai-street-loc"
                       type="text" 
                       value={aiLocationName} 
                       onChange={(e) => setAiLocationName(e.target.value)}

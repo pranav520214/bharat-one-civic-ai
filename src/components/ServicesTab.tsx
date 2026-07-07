@@ -163,11 +163,12 @@ export const ServicesTab: React.FC = () => {
           </div>
         </div>
 
-        <form onSubmit={handleCalculateEligibility} className="space-y-3">
+         <form onSubmit={handleCalculateEligibility} className="space-y-3">
           <div className="grid grid-cols-2 gap-2.5">
             <div>
-              <label className="text-[9px] font-black uppercase text-black block mb-1">Citizen Age</label>
+              <label htmlFor="calc-age" className="text-[9px] font-black uppercase text-black block mb-1">Citizen Age</label>
               <input 
+                id="calc-age"
                 type="number" 
                 value={calcAge} 
                 onChange={(e) => setCalcAge(e.target.value)}
@@ -176,8 +177,9 @@ export const ServicesTab: React.FC = () => {
             </div>
             
             <div>
-              <label className="text-[9px] font-black uppercase text-black block mb-1">Gender Group</label>
+              <label htmlFor="calc-gender" className="text-[9px] font-black uppercase text-black block mb-1">Gender Group</label>
               <select 
+                id="calc-gender"
                 value={calcGender} 
                 onChange={(e: any) => setCalcGender(e.target.value)}
                 className="w-full bg-white border-2 border-black rounded-xl px-2 py-1.5 text-xs font-black text-black focus:outline-none focus:bg-[#E8F0FE] shadow-[1.5px_1.5px_0px_0px_rgba(0,0,0,1)]"
@@ -191,10 +193,11 @@ export const ServicesTab: React.FC = () => {
 
           <div className="grid grid-cols-2 gap-2.5">
             <div>
-              <label className="text-[9px] font-black uppercase text-black block mb-1">Household Income</label>
+              <label htmlFor="calc-income" className="text-[9px] font-black uppercase text-black block mb-1">Household Income</label>
               <div className="relative">
                 <span className="absolute left-2.5 top-2 text-xs font-black text-black">₹</span>
                 <input 
+                  id="calc-income"
                   type="number" 
                   value={calcIncome} 
                   onChange={(e) => setCalcIncome(e.target.value)}
@@ -204,8 +207,9 @@ export const ServicesTab: React.FC = () => {
             </div>
             
             <div>
-              <label className="text-[9px] font-black uppercase text-black block mb-1">Occupation</label>
+              <label htmlFor="calc-profession" className="text-[9px] font-black uppercase text-black block mb-1">Occupation</label>
               <select 
+                id="calc-profession"
                 value={calcProfession} 
                 onChange={(e) => setCalcProfession(e.target.value)}
                 className="w-full bg-white border-2 border-black rounded-xl px-2 py-1.5 text-xs font-black text-black focus:outline-none focus:bg-[#E8F0FE] shadow-[1.5px_1.5px_0px_0px_rgba(0,0,0,1)]"
@@ -265,12 +269,14 @@ export const ServicesTab: React.FC = () => {
               value={liveQuery}
               onChange={(e) => setLiveQuery(e.target.value)}
               className="w-full bg-white border-2 border-black rounded-xl pl-3 pr-10 py-2 text-xs font-black text-black placeholder-gray-500 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] focus:outline-none"
+              aria-label="Search live welfare schemes"
             />
             <button
               type="submit"
               disabled={isSearchingLive || !liveQuery.trim()}
               className="absolute right-2.5 top-2 text-black hover:text-blue-600 font-black disabled:opacity-40"
               id="live-search-submit-btn"
+              aria-label="Execute live scheme search"
             >
               {isSearchingLive ? (
                 <div className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin" />
@@ -303,9 +309,12 @@ export const ServicesTab: React.FC = () => {
 
                 return (
                   <div key={sch.id} className="bg-white border-2 border-black rounded-xl p-3.5 space-y-2.5 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all">
-                    <div 
+                    <button 
+                      type="button"
                       onClick={() => setExpandedLiveScheme(isExpanded ? null : sch.id)}
-                      className="cursor-pointer flex justify-between items-start gap-2 select-none"
+                      className="w-full text-left flex justify-between items-start gap-2 select-none focus:outline-none focus:ring-2 focus:ring-blue-500 rounded"
+                      aria-expanded={isExpanded}
+                      aria-label={`${sch.name}, ${sch.department}`}
                     >
                       <div className="space-y-1">
                         <span className="text-[8px] font-black text-black uppercase bg-[#D2E3FC] border border-black px-2 py-0.5 rounded inline-block">
@@ -316,7 +325,7 @@ export const ServicesTab: React.FC = () => {
                       <div className="shrink-0">
                         {isExpanded ? <ChevronUp className="w-4 h-4 text-black" /> : <ChevronDown className="w-4 h-4 text-black" />}
                       </div>
-                    </div>
+                    </button>
 
                     {isExpanded && (
                       <div className="space-y-3 text-[10px] border-t border-black/5 pt-2.5 font-bold text-gray-800">
@@ -384,6 +393,7 @@ export const ServicesTab: React.FC = () => {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full bg-white border-2 border-black rounded-xl pl-9.5 pr-4 py-2.5 text-xs font-black text-black placeholder-gray-500 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] focus:outline-none"
+            aria-label="Search schemes by name or department"
           />
         </div>
 
@@ -400,9 +410,12 @@ export const ServicesTab: React.FC = () => {
                 className={`bg-white border-2 border-black rounded-2xl transition-all overflow-hidden shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]`}
               >
                 {/* Header card clickable */}
-                <div 
+                <button 
+                  type="button"
                   onClick={() => setExpandedScheme(isExpanded ? null : sch.id)}
-                  className="p-4 cursor-pointer flex justify-between items-start gap-3 select-none"
+                  className="w-full text-left p-4 flex justify-between items-start gap-3 select-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  aria-expanded={isExpanded}
+                  aria-label={`${sch.name}, ${sch.department}`}
                 >
                   <div className="space-y-1.5">
                     <span className="text-[8px] font-black tracking-wider text-black uppercase bg-[#D2E3FC] border border-black px-2 py-0.5 rounded inline-block">
@@ -430,7 +443,7 @@ export const ServicesTab: React.FC = () => {
                     )}
                     {isExpanded ? <ChevronUp className="w-4 h-4 text-black" /> : <ChevronDown className="w-4 h-4 text-black" />}
                   </div>
-                </div>
+                </button>
 
                 {/* Expanded Details */}
                 <AnimatePresence>
