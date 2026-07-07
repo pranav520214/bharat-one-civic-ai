@@ -567,6 +567,11 @@ function getHaversineDistance(lat1: number, lon1: number, lat2: number, lon2: nu
 
 // Serve static UI assets and Vite middleware
 async function startServer() {
+  if (process.env.VERCEL) {
+    // Vercel serverless handles static serving at edge; don't initialize listener
+    return;
+  }
+
   if (process.env.NODE_ENV !== 'production') {
     const vite = await createViteServer({
       server: { middlewareMode: true },
@@ -587,3 +592,5 @@ async function startServer() {
 }
 
 startServer();
+
+export default app;
