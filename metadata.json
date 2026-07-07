@@ -1,0 +1,6 @@
+{
+  "name": "Bharat One",
+  "description": "Bharat One (Saarthi AI) is a production-grade AI-powered civic companion for India. One AI for every government service, providing location-aware civic workflows, multi-lingual support, scheme tracking, and complaint reporting.",
+  "requestFramePermissions": ["geolocation", "microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

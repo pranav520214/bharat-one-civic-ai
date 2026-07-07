@@ -1,0 +1,70 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "Stored user profiles including PII and saved e-locker documents",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "fullName": { "type": "string" },
+        "phoneNumber": { "type": "string" },
+        "state": { "type": "string" },
+        "city": { "type": "string" },
+        "aadhaarLastFour": { "type": "string" },
+        "digitalCardId": { "type": "string" },
+        "savedDocuments": { "type": "array" }
+      },
+      "required": ["uid", "fullName"]
+    },
+    "Complaint": {
+      "title": "Civic Complaint",
+      "description": "User logged civic complaints and grievance timelines",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "category": { "type": "string" },
+        "description": { "type": "string" },
+        "locationName": { "type": "string" },
+        "coordinates": { "type": "object" },
+        "state": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "status": { "type": "string" },
+        "timeline": { "type": "array" },
+        "upvotes": { "type": "number" }
+      },
+      "required": ["id", "userId", "title", "category", "description", "locationName", "coordinates", "state", "createdAt", "status"]
+    },
+    "AppliedScheme": {
+      "title": "Applied Gov Scheme",
+      "description": "Submissions and tracking for government schemes",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "schemeId": { "type": "string" },
+        "userId": { "type": "string" },
+        "name": { "type": "string" },
+        "department": { "type": "string" },
+        "status": { "type": "string" },
+        "applicationId": { "type": "string" },
+        "appliedDate": { "type": "string" }
+      },
+      "required": ["id", "schemeId", "userId", "name", "department", "status", "applicationId", "appliedDate"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles including secure e-locker documents"
+    },
+    "/complaints/{complaintId}": {
+      "schema": "Complaint",
+      "description": "Civic complaints map markers and details"
+    },
+    "/users/{userId}/appliedSchemes/{schemeId}": {
+      "schema": "AppliedScheme",
+      "description": "Individual applied scheme details for a citizen"
+    }
+  }
+}
